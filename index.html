@@ -24,15 +24,29 @@
 body{font-family:var(--sans);color:var(--cf-text);background:var(--cf-cream);font-size:16px;line-height:1.65}
 .top-bar{background:var(--cf-blue);color:#fff;font-size:14px;text-align:center;padding:7px 1rem;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
 .top-bar strong{font-weight:700}
-nav{background:var(--cf-blue);border-bottom:3px solid var(--cf-orange);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;min-height:80px;position:sticky;top:0;z-index:100;overflow:visible;flex-wrap:wrap}
+nav{background:var(--cf-blue);border-bottom:3px solid var(--cf-orange);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;min-height:80px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
 .hamburger span{display:block;width:24px;height:2px;background:#f5d9b8;border-radius:2px;transition:all 0.2s}
 @media(max-width:680px){
-  nav{padding:0 1rem;min-height:64px}
+  nav{padding:0 1rem;min-height:64px;position:relative}
   .hamburger{display:flex}
-  .nav-links{display:none;flex-direction:column;width:100%;padding:0.5rem 0 1rem;gap:4px;order:3}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--cf-blue);
+    border-top:1px solid rgba(255,255,255,0.15);
+    border-bottom:3px solid var(--cf-orange);
+    padding:0.5rem 1rem 1rem;
+    gap:4px;
+    z-index:200;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3)
+  }
   .nav-links.open{display:flex}
-  .nav-links a{padding:10px 14px;border-radius:4px;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .nav-links a{padding:10px 14px;border-radius:4px;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.08);width:100%}
   .logo-text{font-size:16px}
   .logo-sub{font-size:10px}
   .logo-spiral{width:80px!important;height:80px!important}
@@ -418,7 +432,7 @@ function addPartyMember(){
   row.innerHTML = '<input type="text" class="party-name" placeholder="Name" style="padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none">'
     + '<input type="text" class="party-rel" placeholder="e.g. child, spouse" style="padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none">'
     + '<input type="email" class="party-email" placeholder="email@example.com" style="padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none">'
-    + '<button onclick="this.closest('.party-row').remove()" style="background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;padding:0;line-height:1">&times;</button>';
+    + '<button onclick="this.parentElement.remove()" style="background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;padding:0;line-height:1">&times;</button>';
   list.appendChild(row);
 }
 
@@ -513,7 +527,7 @@ function submitRSVP(){
     <div class="page-title">T-Shirt Orders</div>
     <div class="page-sub">Order your official Spiralpalooza commemorative shirt &mdash; designed by Durham illustrator and author <strong>Iris Gottlieb</strong>!</div>
     <div style="background:#fff;border:1.5px solid var(--cf-border);border-left:4px solid var(--cf-green);border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;font-size:14px;line-height:1.7">
-      <p style="margin-bottom:0.75rem">Durham-raised illustrator and author <strong>Iris Gottlieb</strong> is creating our Spiralpalooza commemorative shirts, which will include <strong>every Children First sign</strong>. Iris has been drawing over 200 signs that will create a design covering the front and back of the shirt.</p>
+      <p style="margin-bottom:0.75rem">Durham-raised illustrator and author <strong>Iris Gottlieb</strong> is creating our Spiralpalooza commemorative shirts, which will include <strong>every Children First sign</strong>. Iris will be drawing all 197 signs that will create a design covering the front and back of the shirt.</p>
       <p style="margin-bottom:0.75rem">Admire Iris&rsquo;s work at <a href="https://www.irisgottlieb.com/" target="_blank" style="color:var(--cf-blue);font-weight:700">irisgottlieb.com</a></p>
       <p style="margin-bottom:0.75rem">All shirts are <strong>Gildan Cotton T-shirts</strong>. Printed in a pleasing color on:</p>
       <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:0.85rem">
