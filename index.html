@@ -29,7 +29,7 @@ nav{background:var(--cf-blue);border-bottom:3px solid var(--cf-orange);padding:0
 .hamburger span{display:block;width:24px;height:2px;background:#f5d9b8;border-radius:2px;transition:all 0.2s}
 @media(min-width:681px){.nav-links{display:flex!important}}
 @media(max-width:680px){
-  nav{padding:0 1rem;min-height:64px;position:relative}
+  nav{padding:0 1rem;height:64px;min-height:0;position:relative;margin-bottom:0;flex-wrap:nowrap;overflow:hidden}
   .hamburger{display:flex}
   .nav-links{
     display:none;
@@ -64,6 +64,9 @@ nav{background:var(--cf-blue);border-bottom:3px solid var(--cf-orange);padding:0
   .party-row{grid-template-columns:1fr!important;gap:6px!important}
   .party-row input{width:100%!important}
   .party-row input.party-name::before{content:"Name"}
+  section.active{margin-top:0;padding-top:0}
+  .carousel-outer{margin-top:0}
+  #home .carousel-outer{margin-top:0}
 }
 .logo{display:flex;align-items:center;gap:10px}
 .logo-spiral{width:130px;height:130px;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0}
