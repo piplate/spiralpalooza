@@ -389,10 +389,14 @@ section{display:none}section.active{display:block}
       <!-- Additional info -->
       <div style="background:#fff;border:1.5px solid var(--cf-border);border-radius:6px;overflow:hidden;margin-bottom:1rem">
         <div style="background:var(--cf-blue);color:#fff;padding:8px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Anything Else?</div>
-        <div style="padding:1rem 1.25rem">
+        <div style="padding:1rem 1.25rem;display:flex;flex-direction:column;gap:1rem">
           <div>
-            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cf-muted);margin-bottom:5px">Anything else you&rsquo;d like us to know?</label>
-            <textarea id="rsvp-notes" placeholder="Questions, memories, excitement..." style="width:100%;padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none;resize:vertical;min-height:70px"></textarea>
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cf-muted);margin-bottom:5px">Anything you want to share only with the Spiralpalooza organizers?</label>
+            <textarea id="rsvp-notes-private" placeholder="Questions, dietary needs, anything just for us..." style="width:100%;padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none;resize:vertical;min-height:70px"></textarea>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cf-muted);margin-bottom:5px">Anything you want to share with the community?</label>
+            <textarea id="rsvp-notes-public" placeholder="Memories, excitement, a message to old friends..." style="width:100%;padding:8px 10px;border:1.5px solid var(--cf-border);border-radius:4px;font-family:var(--sans);font-size:14px;outline:none;resize:vertical;min-height:70px"></textarea>
           </div>
         </div>
       </div>
@@ -498,7 +502,8 @@ function submitRSVP(){
     role:         roles.join(", "),
     partyMembers: members.join(" | "),
     totalInParty: total,
-    notes:        document.getElementById("rsvp-notes").value.trim(),
+    notesPrivate: document.getElementById("rsvp-notes-private").value.trim(),
+    notesPublic:  document.getElementById("rsvp-notes-public").value.trim(),
     listPermission: (document.querySelector('input[name="rsvp-permission"]:checked') || {value:"No"}).value
   };
 
@@ -910,6 +915,7 @@ function submitShirtOrder(){
             <tr style="background:var(--cf-blue);color:#fff">
               <th style="text-align:left;padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Name</th>
               <th style="text-align:left;padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Years at Children First</th>
+              <th style="text-align:left;padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Message</th>
             </tr>
           </thead>
           <tbody id="whocoming-tbody"></tbody>
@@ -1049,6 +1055,7 @@ function loadWhoComing(){
       return "<tr style='background:"+bg+";border-bottom:1px solid #f0ede8'>" +
         "<td style='padding:9px 16px;color:var(--cf-text);font-weight:500'>" + r.name + "</td>" +
         "<td style='padding:9px 16px;color:var(--cf-muted)'>" + (r.years || "&mdash;") + "</td>" +
+        "<td style='padding:9px 16px;color:var(--cf-text);font-style:italic'>" + (r.note || "") + "</td>" +
         "</tr>";
     }).join("");
     var total = data.rsvps.length;
